@@ -1,0 +1,18 @@
+These contains misc functions useful in somewhat rare cases.
+
+Get human-readable timestamp from internet archive URL.
+When viewing an archived page, the IA stores the timestamp in this format:
+	https://web.archive.org/web/YYYYMMDDhhmmss/<Website original URL>
+	
+	YYYYMMDDhhmmss: Each character is a digit of a number. If fewer digits,
+	leading zeroes are added.
+	YYYY = year
+	MM = months
+	DD = day
+	hh = hour
+	mm = minute
+	ss = second
+
+	This regular expression replaces the timestamp to readable format:
+		Find what: [https://web.archive.org/web/(\d\d\d\d)(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)/(.*)$]
+		Replace with: [Archived on \1-\2-\3 \4:\5:\6 \7]
