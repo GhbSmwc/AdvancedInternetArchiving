@@ -30,12 +30,19 @@ Using internet archive's email (savepagenow@archive.org) page saver:
 			(1) Remove the IA's string part of the URL:
 				Find what: [https://web\.archive\.org/web/[0-9]*/]
 				Replace with: [] (nothing)
+				Wrap around: checked
+				Search mode: Regular Expression
 		
 			(2) Remove all stuff after the URLs:
 				Find what: [ Error! .*$]
 				Replace with: [] (nothing)
 				Wrap around: checked
 				. matches newline: unchecked
+			or:
+				Find what: [^(?'URL'https://([A-Za-z0-9/\.%]*)) .*$]
+				Replace with: [$+{URL}]
+				Wrap around: checked
+				Search mode: Regular Expression
 	You should now have the URLs that didn't save, just submit those and repeat until all links are successful. However, if you have
 	links with special/non-UTF characters, try saving via HTML-styled hyperlinks:
 		If the URL contains special characters and non-UTF characters (which often results in emails that characters on or after the first invalid character are ignored),
