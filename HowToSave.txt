@@ -28,7 +28,7 @@ Using internet archive's email (savepagenow@archive.org) page saver:
 	Follow these instructions in order to retry saving a link:
 		Convert IA links back to normal links:
 			(1) Remove the IA's string part of the URL:
-				Find what: [https\:\/\/web\.archive\.org\/web\/[0-9]*\/]
+				Find what: [https://web\.archive\.org/web/[0-9]*/]
 				Replace with: [] (nothing)
 		
 			(2) Remove all stuff after the URLs:
