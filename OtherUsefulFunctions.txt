@@ -15,4 +15,5 @@ When viewing an archived page, the IA stores the timestamp in this format:
 
 	This regular expression replaces the timestamp to readable format:
 		Find what: [https://web.archive.org/web/(\d\d\d\d)(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)/(.*)$]
-		Replace with: [Archived on \1-\2-\3 \4:\5:\6 \7]
+		Replace with: [Archived on \1-\2-\3 \4:\5:\6 Original link: \7]
+		Search mode: Regular expression.
