@@ -39,7 +39,7 @@ Using internet archive's email (savepagenow@archive.org) page saver:
 				Wrap around: checked
 				. matches newline: unchecked
 			or:
-				Find what: [^(?'URL'https://([A-Za-z0-9/\.%]*)) .*$]
+				Find what: [^(?'URL'https://([A-Za-z0-9/\.%\-\?\=\+]*)) .*$]
 				Replace with: [$+{URL}]
 				Wrap around: checked
 				Search mode: Regular Expression
