@@ -22,8 +22,8 @@ When viewing an archived page, the IA stores the timestamp in this format:
 Continuous saving
 	Perhaps if you have thousands of URLs and are submitting each URL containing 500 or less links on there
 	all at once. So I provided a strategy checking if the URLs have failed or are waiting to get a reply on it.
-	Before even submitting, have a "master list" that CAN have more than 500, take each group of 500 and submit them.
-	Once you get the last group. Then as each reply is sent to your inbox, copy all those URLs detected, and do this:
+	Before even submitting, have a "master list" that CAN have more than 500 (sorted alphabetically, no duplicate lines),
+	take each group of 500 and submit them. Once you get the last group. Then as each reply is sent to your inbox, copy all those URLs detected, and do this:
 		Remove the potential "First Archive":
 			Find what: [ First Archive]
 			Replace with: [] (nothing)
