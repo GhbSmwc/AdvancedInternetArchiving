@@ -24,28 +24,36 @@ Continuous saving
 	all at once. So I provided a strategy checking if the URLs have failed or are waiting to get a reply on it.
 	Before even submitting, have a "master list" that CAN have more than 500 (sorted alphabetically, no duplicate lines),
 	take each group of 500 and submit them. Once you get the last group. Then as each reply is sent to your inbox, copy all those URLs detected, and do this:
-		Remove the potential "First Archive":
-			Find what: [ First Archive]
-			Replace with: [] (nothing)
-		Then, we want to reformat the successful saves so that it starts with the original URL (so that later when
-		sorting alphabetically with both sent and reply list combined, you have the sent links and the successfully
-		saved link from reply next to one another).
-		
-		Then do this:
-			Find what: [https://web.archive.org/web/[0-9]*/(?'URL'https://([^[:s:]]*))*]
-			Replace with: [$+{URL} success]
-			Wrap around: checked
-			Search mode: Regular expression
-			. matches newline: unchecked
-				^This will revert the Internet archive URL to an original URL with the word "success" added after.
-				
-		Then copy that reformatted list and combine it with the master list. Sort alphabetically. Then do this:
-			Find what: [(?'URL'https://([^[:s:]]+))\R\g'URL' success]
-			Replace with: [] (nothing)
-			Wrap around: checked
-			Search mode: Regular expression
-				^This will get rid of all URLs that have successfully been saved (confirmed), while ones that only 1 exists
-				(either due to redirect, or waiting for a reply), errors out or any "unsure" if the URL have been saved or not
-				will still exist to be saved.
+		The reply from the IA:
+			Remove the potential "First Archive":
+				Find what: [ First Archive$]
+				Replace with: [] (nothing)
+				Wrap around: checked
+				Search mode: Regular expression
+				. matches newline: unchecked
+			Then, we want to reformat the successful saves so that it starts with the original URL (so that later when
+			sorting alphabetically with both sent and reply list combined, you have the sent links and the successfully
+			saved link from reply next to one another):
+				Find what: [https://web.archive.org/web/[0-9]*/(?'URL'https://([^[:s:]]*))*]
+				Replace with: [$+{URL} success]
+				Wrap around: checked
+				Search mode: Regular expression
+				. matches newline: unchecked
+					^This will revert the Internet archive URL to an original URL with the word "success" added after.
+					
+		Ridding out the URLs that were saved:
+			Then copy that reformatted list and combine it with the master list. Sort alphabetically. Then do this:
+				Find what: [^(?'URL'https://([^[:s:]]+))\R\g'URL' success]
+				Replace with: [] (nothing)
+				Wrap around: checked
+				Search mode: Regular expression
+					^This will get rid of all URLs that have successfully been saved (confirmed), while ones that only 1 exists
+					(either due to redirect, or waiting for a reply), errors out or any "unsure" if the URL have been saved or not
+					will still exist to be saved.
+			Since errors and whatever on the list are both "not saved" URLs, do this to clean up:
+				Find what: [^https://[^[:s:]]* Error!.*$]
+				Replace with: [] (nothing)
+				Wrap around: checked
+				Search mode: Regular expression
 	Essentially, the "master list" is a "to save/resave list". If any fails, remains on the list to be tried again, and successfully saved links
 	disappear off the list.
