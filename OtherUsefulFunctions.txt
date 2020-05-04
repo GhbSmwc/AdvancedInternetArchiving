@@ -19,7 +19,7 @@ When viewing an archived page, the IA stores the timestamp in this format:
 		Search mode: Regular expression.
 		
 		
-Continuous saving
+Continuous saving via "decaying" list
 	Perhaps if you have thousands of URLs and are submitting each URL containing 500 or less links on there
 	all at once. So I provided a strategy checking if the URLs have failed or are waiting to get a reply on it.
 	Before even submitting, have a "master list" that CAN have more than 500 (sorted alphabetically, no duplicate lines),
@@ -39,17 +39,21 @@ Continuous saving
 				Wrap around: checked
 				Search mode: Regular expression
 				. matches newline: unchecked
-					^This will revert the Internet archive URL to an original URL with the word "success" added after.
+					^This will revert the Internet archive URL to an original URL with the word "success" added after only for URLs that
+					have truly sucessfully saved.
 					
 		Ridding out the URLs that were saved:
-			Then copy that reformatted list and combine it with the master list. Sort alphabetically. Then do this:
+			Then copy that reformatted list and combine it with the master list. Sort alphabetically ascending (Edit -> Line Operations -> Sort Lines Lexicographically ascending,
+			not descending!). Then do this:
 				Find what: [^(?'URL'https://([^[:s:]]+))\R\g'URL' success]
 				Replace with: [] (nothing)
 				Wrap around: checked
 				Search mode: Regular expression
 					^This will get rid of all URLs that have successfully been saved (confirmed), while ones that only 1 exists
 					(either due to redirect, or waiting for a reply), errors out or any "unsure" if the URL have been saved or not
-					will still exist to be saved.
+					will still exist to be (re-)saved.
+			Feel free to remove duplicate URLs by Edit -> Line Operations -> Remove Consecutive Duplicate lines (this brings all the URLs
+			together and removes all but one empty line) afterwards.
 			Since errors and whatever on the list are both "not saved" URLs, do this to clean up:
 				Find what: [^https://[^[:s:]]* Error!.*$]
 				Replace with: [] (nothing)
@@ -57,6 +61,13 @@ Continuous saving
 				Search mode: Regular expression
 	Essentially, the "master list" is a "to save/resave list". If any fails, remains on the list to be tried again, and successfully saved links
 	disappear off the list.
+	
+	Be very careful if the link contains special characters not being percent encoded. This replace mechanism assumes the space character marks the end
+	of the URL and so does most online platforms when posting a reply. Also note that the space character in a FTP have two symbols for substitution with
+	safer characters:
+		[+] (plus sigh) which then becomes %2B
+		[ ] (space character) becomes %20
+	Which they are interpreted differently.
 	
 
 Credits:
