@@ -57,3 +57,15 @@ Continuous saving
 				Search mode: Regular expression
 	Essentially, the "master list" is a "to save/resave list". If any fails, remains on the list to be tried again, and successfully saved links
 	disappear off the list.
+	
+
+Credits:
+	Notepad++ community:
+		sasumner ( https://github.com/sasumner ) and xylographe ( https://github.com/xylographe )
+			Got help in this thread:
+				https://github.com/notepad-plus-plus/notepad-plus-plus/issues/8102
+			boost.org's info:
+				https://www.boost.org/doc/libs/1_70_0/libs/regex/doc/html/boost_regex/format/perl_format.html
+				https://www.boost.org/doc/libs/1_70_0/libs/regex/doc/html/boost_regex/syntax/perl_syntax.html
+		
+		for helping me with using whatever is matched into a capture group. This is often useful for moving texts around.
