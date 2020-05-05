@@ -43,8 +43,8 @@ Continuous saving via "decaying" list
 					have truly sucessfully saved.
 					
 		Ridding out the URLs that were saved:
-			Then copy that reformatted list and combine it with the master list. Sort alphabetically ascending (Edit -> Line Operations -> Sort Lines Lexicographically ascending,
-			not descending!). Then do this:
+			Then copy that reformatted list and combine it with the master list. Sort lines alphabetically ascending (Edit -> Line Operations ->
+			Sort Lines Lexicographically ascending, not descending!). Then do this:
 				Find what: [^(?'URL'https://([^[:s:]]+))\R\g'URL' success]
 				Replace with: [] (nothing)
 				Wrap around: checked
@@ -53,7 +53,7 @@ Continuous saving via "decaying" list
 					(either due to redirect, or waiting for a reply), errors out or any "unsure" if the URL have been saved or not
 					will still exist to be (re-)saved.
 			Feel free to remove duplicate URLs by Edit -> Line Operations -> Remove Consecutive Duplicate lines (this brings all the URLs
-			together and removes all but one empty line) afterwards.
+			together and removes all but one empty line) afterwards. You can also safely remove empty lines (located in the line operations -> Remove Empty Lines)
 			Since errors and whatever on the list are both "not saved" URLs, do this to clean up:
 				Find what: [^https://[^[:s:]]* Error!.*$]
 				Replace with: [] (nothing)
@@ -69,7 +69,25 @@ Continuous saving via "decaying" list
 		[ ] (space character) becomes %20
 	Which they are interpreted differently.
 	
-
+Looking for NEW urls that appeared that haven't been existed before.
+	This assumes you have stored a list of URLs on your PC, and then you have another list that is slightly different due to new content being added. Useful
+	if you want to save each new URL once.
+	
+	To obtain only the new URLs, have two lists, one from an earlier date and the one most recent. I recommend naming these txt files as a date (YYYY-MM-DD
+	leading zeroes included if you are keeping records of old lists) and sort them by name for easy finding.
+	
+	On the older list, append " old" at the end of each URLs:
+		Find what: [$]
+		Replace with: [ old]
+		Wrap around: checked
+		Search mode: Regular expression
+	Then copy all of that, and then add to the list containing the newer list. Sort alphabetically (line operations) Then do this to extract only new URLs:
+		Find what: [^(?'URL'https://([^[:s:]]+))\R\g'URL' old]
+		Replace with: [] (nothing)
+		Wrap around: checked
+		Search mode: Regular expression
+			^Removes all URLs that existed before.
+	Feel free to sort alphabetically once again (and remove duplicate lines) for convenient format.
 Credits:
 	Notepad++ community:
 		sasumner ( https://github.com/sasumner ) and xylographe ( https://github.com/xylographe )
