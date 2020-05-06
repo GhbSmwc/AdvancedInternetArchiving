@@ -22,7 +22,7 @@ When viewing an archived page, the IA stores the timestamp in this format:
 Continuous saving via "decaying" list
 	Perhaps if you have thousands of URLs and are submitting each URL containing 500 or less links on there
 	all at once. So I provided a strategy checking if the URLs have failed or are waiting to get a reply on it.
-	Before even submitting, have a "master list" that CAN have more than 500 (sorted alphabetically, no duplicate lines),
+	Before even submitting, have a "master list" that CAN have more than 500 (lines sorted alphabetically, no duplicate lines),
 	take each group of 500 and submit them. Once you get the last group. Then as each reply is sent to your inbox, copy all those URLs detected, and do this:
 		The reply from the IA:
 			Remove the potential "First Archive":
@@ -32,7 +32,7 @@ Continuous saving via "decaying" list
 				Search mode: Regular expression
 				. matches newline: unchecked
 			Then, we want to reformat the successful saves so that it starts with the original URL (so that later when
-			sorting alphabetically with both sent and reply list combined, you have the sent links and the successfully
+			sorting lines alphabetically with both sent and reply list combined, you have the sent links and the successfully
 			saved link from reply next to one another):
 				Find what: [https://web.archive.org/web/[0-9]*/(?'URL'https://([^[:s:]]*))*]
 				Replace with: [$+{URL} success]
@@ -69,7 +69,7 @@ Continuous saving via "decaying" list
 		[ ] (space character) becomes %20
 	Which they are interpreted differently.
 	
-Looking for NEW urls that appeared that haven't been existed before.
+Looking for URLs that vanished or newly created from a list.
 	This assumes you have stored a list of URLs on your PC, and then you have another list that is slightly different due to new content being added. Useful
 	if you want to save each new URL once.
 	
@@ -81,13 +81,23 @@ Looking for NEW urls that appeared that haven't been existed before.
 		Replace with: [ old]
 		Wrap around: checked
 		Search mode: Regular expression
-	Then copy all of that, and then add to the list containing the newer list. Sort alphabetically (line operations) Then do this to extract only new URLs:
+	Then copy all of that, and then add/combine to the list containing the newer list. Sort lines alphabetically. Then do this to extract only URLs that
+	disappeared or appeared:
 		Find what: [^(?'URL'https://([^[:s:]]+))\R\g'URL' old]
 		Replace with: [] (nothing)
 		Wrap around: checked
 		Search mode: Regular expression
-			^Removes all URLs that existed before.
-	Feel free to sort alphabetically once again (and remove duplicate lines) for convenient format.
+			^Removes all URLs that existed in the past and present. Leaving out deleted URLs and ones newly created.
+	Feel free to sort lines alphabetically once again (and remove duplicate lines) for convenient format.
+	
+	Of course, if you want to sort them by which one are old and which are new, do this:
+		Find what: [^(?'URL'https://([^[:s:]]+)) old]
+		Replace with: [old: $+{URL}]
+		Wrap around: checked
+		Search mode: Regular expression
+			^This will move the old to the left margin so that the sort line catches that and puts
+			 all of them together.
+	Then sort lines alphabetically.
 Credits:
 	Notepad++ community:
 		sasumner ( https://github.com/sasumner ) and xylographe ( https://github.com/xylographe )
