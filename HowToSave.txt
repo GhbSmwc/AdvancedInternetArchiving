@@ -74,9 +74,10 @@ Using internet archive's email (savepagenow@archive.org) page saver:
 			they will be caught by the extension too.
 			
 		When saving tweets on twitter, it's possible that saving any twitter pages can randomly redirect to:
-		[https://api.twitter.com/2/timeline/conversation/<TweetID>.json?<long string of commands>]
-		[https://twitter.com/i/js_inst?c_name=ui_metrics]
-		[https://pbs.twimg.com/hashflag/config-<year>-<month>-<day>-16.json]
+			[https://api.twitter.com/1.1/jot/client_event.json]
+			[https://api.twitter.com/2/timeline/conversation/<TweetID>.json?<long string of commands>]
+			[https://pbs.twimg.com/hashflag/config-<year>-<month>-<day>-16.json]
+			[https://twitter.com/i/js_inst?c_name=ui_metrics]
 		
 		When a redirect happens, currently, the WBM will simply show the URL redirected to, not the link you gave it.
 		To retry these redirected links, follow these instructions:
