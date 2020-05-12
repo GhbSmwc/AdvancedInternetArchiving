@@ -42,7 +42,7 @@ Link gopher
 		is a number that is below a threshold (depends on how much memory used up on the pages in total) that causes the browser
 		to unload tabs.
 
-GoodTwitter
+GoodTwitter (don't use on and after june 1 2020!)
 	#Twitter #Layout #LoadedContent #OldTwitterLayout
 	https://github.com/ZusorCode/GoodTwitter
 	Due to the new twitter layout (unloads content when new content is loaded, URLs format on images, gifs, and other

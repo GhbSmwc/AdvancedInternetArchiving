@@ -1,0 +1,47 @@
+Due to the new layout and that the legacy version of twitter is going to be shut down on 2020/06/01, I documented several info about on new ways
+to save tweets and media on the forced-new-layout.
+
+How to get URLs off of twitter's new layout:
+	Some good news and some bad news:
+		Bad news:
+			Several browser extensions such as Linkgopher and other stuff will only detect tweets currently loaded. The new twitter layout
+			unloads stuff at the top of the browser view (original doesn't do that), so they wouldn't be detected by the extensions. Linkgopher,
+			for example, will only get tweets that are loaded and not the ones that went far enough atop the screen.
+			
+			Entering https://twitter.com/<username>/media when you're logged out redirects you to https://twitter.com/<username>. Twitter effectively
+			completely log-walled (login wall) the access to a page that filters out media on the user homepage (before just clicking on the media tab
+			brings the message asking for a login which can be bypassed by entering the URL directly).
+		Good news:
+			The dev tools lets you Inspect element (or simply inspect), and viewing the "network" will display all content loaded from elsewhere. Forcing
+			each item listed not to disappear when they unload ("persist logs" or "preserve log") and scrolling down will "capture" all media and other
+			content (including the ID number of the tweets).
+			
+			You don't need to log in in order to see media-related tweets, the search bar and view this information:
+			[https://help.twitter.com/en/using-twitter/twitter-search ] on how to search desired tweets
+
+	Before you load the page, make sure the network monitor is up so that it captures the links of where content is coming from, otherwise you need to refresh the page
+	to get it onto the list, make sure that "persist logs"/"preserve log" are checked, and you are on the "all" tab (not limited to HTML, images, etc.). Now scroll down.
+	Once you get to the bottom or you wanted to stop scrolling any more, right-click the list, copy -> Copy All As HAR, paste on a new document on notepad++ and you
+	should have all the requests, which contains the URLs to save.
+	
+	In the HAR's URL list, they're formatted:
+		Tweets:
+			As I said before, it's:
+				https://twitter.com/<username>/status/<TweetID>
+			so far, this does not show in the network, someone has to make an extension that logs each tweet being loaded into the HTML
+			or make it so that twitter does not unload tweets leaving the screen.
+		Media:
+			Image URL formats (in case this gets affected when shut down):
+				URL format:
+					Old:
+						https://pbs.twimg.com/media/<base64string>.<extension>:<resolution_name>
+					New:
+						https://pbs.twimg.com/media/<base64string>?format=<extension>&name=<resolution_name>
+				Legends:
+					<extension>: file extension (jpg, png, etc.)
+					<resolution_name>:
+						Not having [&name=<resolution_name>] gives you the "medium" resolution
+						[thumb] = thumbnail
+						[large] = larger
+						[orig] = original resolution
+						<width>x<height> = the approximate width and height set to.
