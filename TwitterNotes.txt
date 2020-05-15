@@ -28,7 +28,7 @@ How to get URLs off of twitter's new layout:
 		Tweets:
 			As I said before, it's:
 				https://twitter.com/<username>/status/<TweetID>
-			so far, this does not show in the network, someone has to make an extension that logs each tweet being loaded into the HTML
+			so far, this does not show in the network, someone has to make an extension/script that logs each tweet being loaded into the HTML
 			or make it so that twitter does not unload tweets leaving the screen.
 		Media:
 			Image URL formats (in case this gets affected when shut down):
@@ -45,3 +45,10 @@ How to get URLs off of twitter's new layout:
 						[large] = larger
 						[orig] = original resolution
 						<width>x<height> = the approximate width and height set to.
+
+Getting URLs off the HAR text
+	While using notepad++, the CTRL+F and find all have a character limit per line, so moving the URLs to the left margin is needed:
+		Find what: ["(?'URL'https://.*?)"]
+		Replace with: [\n$+{URL}\n]
+		Search mode: Regular Expression
+		. matches newline: unchecked
