@@ -42,7 +42,7 @@ Link gopher
 		is a number that is below a threshold (depends on how much memory used up on the pages in total) that causes the browser
 		to unload tabs.
 
-GoodTwitter (don't use on and after june 1 2020!)
+GoodTwitter (don't use on and after june 1 2020! Use a greasemonkey script!)
 	#Twitter #Layout #LoadedContent #OldTwitterLayout
 	https://github.com/ZusorCode/GoodTwitter
 	Due to the new twitter layout (unloads content when new content is loaded, URLs format on images, gifs, and other
@@ -68,7 +68,8 @@ GoodTwitter (don't use on and after june 1 2020!)
 			[:thumb] thumbnail - used when a tweet has multiple images (3+).
 		GIFs and videos:
 			Note that this doesn't work if the media is not stored on
-			twitter but linked from an external source, such as facebook.
+			twitter (URL contains [ext_tw_video] which means "external tweet video")
+			but linked from an external source, such as facebook, youtube, etc.
 			
 			Also will not work if the video is long enough that the actual file
 			is containing only a portion of the media due to being a streaming
@@ -81,6 +82,14 @@ GoodTwitter (don't use on and after june 1 2020!)
 	To save links to a tweet, after getting links from “Link gopher” copy that, and look for URLs that contain
 	this:
 		https://twitter.com/<Username>/status/<ID digits>
+Greasemonkey scripts
+	This allows almost no limitations on codes you can execute
+	
+	https://github.com/greasemonkey/greasemonkey/
+	
+	Several useful codes:
+		Extract twitter links and media links:
+			https://greasyfork.org/en/forum/discussion/79273/extract-links-to-tweet-and-media-on-twitter-as-you-scroll-down
 
 Save to the wayback machine
 	https://chrome.google.com/webstore/detail/save-to-the-wayback-machi/eebpioaailbjojmdbmlpomfgijnlcemk
