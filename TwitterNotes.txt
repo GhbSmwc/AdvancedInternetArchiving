@@ -1,54 +1,81 @@
-Due to the new layout and that the legacy version of twitter is going to be shut down on 2020/06/01, I documented several info about on new ways
+Due to the new layout and that the legacy version of twitter is going to be shut down on 2020/06/01, I documented several info and about on new ways
 to save tweets and media on the forced-new-layout.
 
 How to get URLs off of twitter's new layout:
-	Some good news and some bad news:
-		Bad news:
-			Several browser extensions such as Linkgopher and other stuff will only detect tweets currently loaded. The new twitter layout
-			unloads stuff at the top of the browser view (original doesn't do that), so they wouldn't be detected by the extensions. Linkgopher,
-			for example, will only get tweets that are loaded and not the ones that went far enough atop the screen.
-			
-			Entering https://twitter.com/<username>/media when you're logged out redirects you to https://twitter.com/<username>. Twitter effectively
-			completely log-walled (login wall) the access to a page that filters out media on the user homepage (before just clicking on the media tab
-			brings the message asking for a login which can be bypassed by entering the URL directly).
-		Good news:
-			The dev tools lets you Inspect element (or simply inspect), and viewing the "network" will display all content loaded from elsewhere. Forcing
-			each item listed not to disappear when they unload ("persist logs" or "preserve log") and scrolling down will "capture" all media and other
-			content (including the ID number of the tweets).
-			
-			You don't need to log in in order to see media-related tweets, the search bar and view this information:
-			[https://help.twitter.com/en/using-twitter/twitter-search ] on how to search desired tweets
-
-	Before you load the page, make sure the network monitor is up so that it captures the links of where content is coming from, otherwise you need to refresh the page
-	to get it onto the list, make sure that "persist logs"/"preserve log" are checked, and you are on the "all" tab (not limited to HTML, images, etc.). Now scroll down.
-	Once you get to the bottom or you wanted to stop scrolling any more, right-click the list, copy -> Copy All As HAR, paste on a new document on notepad++ and you
-	should have all the requests, which contains the URLs to save.
-	
-	In the HAR's URL list, they're formatted:
-		Tweets:
-			As I said before, it's:
-				https://twitter.com/<username>/status/<TweetID>
-			so far, this does not show in the network, someone has to make an extension/script that logs each tweet being loaded into the HTML
-			or make it so that twitter does not unload tweets leaving the screen.
-		Media:
-			Image URL formats (in case this gets affected when shut down):
-				URL format:
-					Old:
-						https://pbs.twimg.com/media/<base64string>.<extension>:<resolution_name>
-					New:
-						https://pbs.twimg.com/media/<base64string>?format=<extension>&name=<resolution_name>
-				Legends:
-					<extension>: file extension (jpg, png, etc.)
-					<resolution_name>:
-						Not having [&name=<resolution_name>] gives you the "medium" resolution
-						[thumb] = thumbnail
-						[large] = larger
-						[orig] = original resolution
-						<width>x<height> = the approximate width and height set to.
-
-Getting URLs off the HAR text
-	While using notepad++, the CTRL+F and find all have a character limit per line, so moving the URLs to the left margin is needed:
-		Find what: ["(?'URL'https://.*?)"]
-		Replace with: [\n$+{URL}\n]
-		Search mode: Regular Expression
-		. matches newline: unchecked
+	Userscript console logging method:
+		It is very possible to automate the copying of URLs from the HTML using userscripts. Tampermonkey/Greasemonkey browser extension
+		is needed, then you need this script:
+			Code:
+				// ==UserScript==
+				// @name         Extract Twitter links, videos (internal) and images
+				// @namespace    twitter.com
+				// @version      0.2
+				// @description  try to take over the world!
+				// @include      https://twitter.com/*
+				// @grant        none
+				// ==/UserScript==
+				(function() {
+				'use strict';
+				const all = window.allLink = new Set();
+				function getLink() {
+					Array.from(document.querySelectorAll('a[href*="/status/"]')).forEach(link=>{
+					if(!all.has(link.href)&&link.href.match(/twitter\.com\/.+?\/status\/\d+$/)) {
+						all.add(link.href);
+						console.log(link.href);
+					}
+					});
+					Array.from(document.querySelectorAll('[src*="pbs.twimg.com"]')).forEach(link=>{
+					if(!all.has(link.src)) {
+						all.add(link.src);
+						console.log(link.src);
+					}
+					});
+					Array.from(document.querySelectorAll('[src*="video.twimg.com/"]')).forEach(link=>{
+					if(!all.has(link.src)) {
+						all.add(link.src);
+						console.log(link.src);
+					}
+					});
+				}
+				getLink();
+				window.addEventListener('scroll',getLink);
+				})();
+		(source: https://greasyfork.org/en/forum/discussion/79273/extract-links-to-tweet-and-media-on-twitter-as-you-scroll-down )
+		
+		Create a new script and paste that. What will happen is that when you go to twitter, a list of links to images, videos and tweets
+		will be logged into the browser's console log (each time you scroll down), this console log is located in the Dev tools by inspect-element
+		on the context menu or F12. Great care should be taken that if more than a certain number of logs is reached, the oldest will get erased, so
+		increasing this log limit to a large number is needed if you wanted to capture all the URLs loaded. This can be done on firefox on [about:config],
+		search for [devtools.hud.loglimit.console] and [extensions.firebug.console.logLimit] and set it to a number 2147483647 (the highest value allowed).
+		Should you have more than that number, you gonna have to break that into groups of that value by copying them and pasting them in NP++ to back it up,
+		very unlikely you would ever reach that number though.
+		
+		Note that the console log also logs errors and other stuff, so make sure you toggle the display on the tabs on what to show (on google chrome it is
+		a dropdown list). Disabling errors and warnings should leave you just URLs.
+		
+		To copy the list, right-click and select all (on firefox), then copy message. When pasted in notepad++, you should now have the list of URLs.
+		To remove junks around the URLs, use this replace function:
+			Find and replace:
+				find what: [^.*(?'URL'https://[^ ]*?) .*$]
+				Replace with: [$+{URL}]
+		and you should have only URLs on each line. Then remove any unnecessary URLs. Remember they are formated like this:
+			Tweets:
+				As I said before, it's:
+					https://twitter.com/<username>/status/<TweetID>
+				so far, this does not show in the network, someone has to make an extension/script that logs each tweet being loaded into the HTML
+				or make it so that twitter does not unload tweets leaving the screen.
+			Media:
+				Image URL formats (in case this gets affected when shut down):
+					URL format:
+						Old:
+							https://pbs.twimg.com/media/<base64string>.<extension>:<resolution_name>
+						New:
+							https://pbs.twimg.com/media/<base64string>?format=<extension>&name=<resolution_name>
+					Legends:
+						<extension>: file extension (jpg, png, etc.)
+						<resolution_name>:
+							Not having [&name=<resolution_name>] gives you the "medium" resolution
+							[thumb] = thumbnail
+							[large] = larger
+							[orig] = original resolution
+							<width>x<height> = the approximate width and height set to.

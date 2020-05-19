@@ -82,14 +82,19 @@ GoodTwitter (don't use on and after june 1 2020! Use a greasemonkey script!)
 	To save links to a tweet, after getting links from “Link gopher” copy that, and look for URLs that contain
 	this:
 		https://twitter.com/<Username>/status/<ID digits>
-Greasemonkey scripts
+Greasemonkey/Tampermonkey scripts
 	This allows almost no limitations on codes you can execute
 	
-	https://github.com/greasemonkey/greasemonkey/
+	https://github.com/greasemonkey/greasemonkey/ (active)
+	https://github.com/Tampermonkey/tampermonkey (inactive)
 	
 	Several useful codes:
 		Extract twitter links and media links:
 			https://greasyfork.org/en/forum/discussion/79273/extract-links-to-tweet-and-media-on-twitter-as-you-scroll-down
+			
+			The outputted URLs will show up in the devtools's console log. I highly recommend changing the log limit to some very large
+			number as old logs may be deleted. This can be changed on firefox's [about:config] and setting [devtools.hud.loglimit.console]
+			and [extensions.firebug.console.logLimit] to the largest value - 2147483647 (the highest signed 32-bit integer).
 
 Save to the wayback machine
 	https://chrome.google.com/webstore/detail/save-to-the-wayback-machi/eebpioaailbjojmdbmlpomfgijnlcemk
