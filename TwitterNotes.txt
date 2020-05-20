@@ -85,5 +85,5 @@ How to get URLs off of twitter's new layout:
 							https://video.twimg.com/tweet_video_thumb/<base64string>.mp4
 						new:
 							https://pbs.twimg.com/tweet_video_thumb/<base64string>?format=<extension>&name=<resolution_name>
-					source video:
+					source video (uses mp4 the same as actual video):
 						https://video.twimg.com/tweet_video/<base64string>.mp4
