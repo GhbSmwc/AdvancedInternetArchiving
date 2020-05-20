@@ -34,13 +34,13 @@ Continuous saving via "decaying" list
 			Then, we want to reformat the successful saves so that it starts with the original URL (so that later when
 			sorting lines alphabetically with both sent and reply list combined, you have the sent links and the successfully
 			saved link from reply next to one another):
-				Find what: [https://web.archive.org/web/[0-9]*/(?'URL'https://([^[:s:]]*))*]
+				Find what: [https://web.archive.org/web/[0-9]*/(?'URL'https?://([^[:s:]]*))*]
 				Replace with: [$+{URL} success]
 				Wrap around: checked
 				Search mode: Regular expression
 				. matches newline: unchecked
 					^This will revert the Internet archive URL to an original URL with the word "success" added after only for URLs that
-					have truly sucessfully saved.
+					have truly successfully saved.
 					
 		Ridding out the URLs that were saved:
 			Then copy that reformatted list and combine it with the master list. Sort lines alphabetically ascending (Edit -> Line Operations ->
