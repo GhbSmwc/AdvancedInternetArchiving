@@ -176,3 +176,11 @@
             <Action type="2" message="0" wParam="42077" lParam="0" sParam="" />
             <Action type="2" message="0" wParam="42055" lParam="0" sParam="" />
         </Macro>
+        <Macro name="Extract URLs from browser logs." Ctrl="no" Alt="no" Shift="no" Key="0">
+            <Action type="3" message="1700" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1601" wParam="0" lParam="0" sParam="^.*(?&apos;URL&apos;https://[^ ]*?) .*$" />
+            <Action type="3" message="1625" wParam="0" lParam="2" sParam="" />
+            <Action type="3" message="1602" wParam="0" lParam="0" sParam="$+{URL}" />
+            <Action type="3" message="1702" wParam="0" lParam="768" sParam="" />
+            <Action type="3" message="1701" wParam="0" lParam="1609" sParam="" />
+        </Macro>
