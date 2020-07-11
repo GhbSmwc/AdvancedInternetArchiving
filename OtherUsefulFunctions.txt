@@ -109,7 +109,7 @@ Dealing with huge number of URLs (more than 500).
 		   CUT (not copy) that group from "master list" and paste it into the new document you created.
 		4. Perform [Ridding out the URLs that were saved] on that new document. You'll have a list of failed links within that group. Now paste that back to the
 		   master list.
-		5. Also send that what you've pasted.
+		5. Also email that what you've pasted.
 	This method is really good if there are pages that get deleted early. However, having tons of groups may be time consuming, and rushing could make you send an
 	unintentional number of URLs (such as 499 or 501 URLs). So you could manually split each lines by 500, but a regex will do that for you:
 
