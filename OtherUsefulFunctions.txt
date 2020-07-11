@@ -99,16 +99,19 @@ Looking for URLs that vanished or newly created from a list.
 			 all of them together.
 	Then sort lines alphabetically.
 Dealing with huge number of URLs (more than 500).
-	If you want to perform saving URL without accidentally double-submitting (sending the same URL(s) twice)
-		1. Have a list of URLs, this time, "sorted" by each email you sent containing no more than 500 (call it "URL batch 500").
-		2. Email each group.
-		3. Every time you receive an email, copy that, paste into an empty document, then in "URL batch 500" look for a group that matches.
-		   Copy that group and paste it into the empty document.
-		4. Perform [Ridding out the URLs that were saved].
-		5. With the remaining URLs, send those, wait for another email and repeat.
-	Essentially, you are doing each email at a time for checking for failed to save links rather than wait till all the emails are sent. However,
-	having tons of URLs may be time consuming, and rushing could make you send a number of URLs that is unintended (such as 499 or 501 URLs). So
-	you could manuelly split each lines by 500, but a regex will do that for you:
+	Perhaps, you want to re-attempt to save links that failed email-by-email based instead of waiting till all emails are "replied"
+	then saving a list of URLs that failed.
+		1. Have a list of URLs ("master list"), this time, "group sorted" by each email you sent containing no more than 500.
+		   Avoid having this master list be [Ridding out the URLs that were saved]'d because we're not doing the entire list at once, but
+		   each email group at a time.
+		2. Email each group. Make sure each of them matches so you can find them on the later steps.
+		3. Every time you receive an email, copy that, paste into an empty document, then in "master list" look for a group that matches with the email sent.
+		   CUT (not copy) that group from "master list" and paste it into the new document you created.
+		4. Perform [Ridding out the URLs that were saved] on that new document. You'll have a list of failed links within that group. Now paste that back to the
+		   master list.
+		5. Also send that what you've pasted.
+	This method is really good if there are pages that get deleted early. However, having tons of groups may be time consuming, and rushing could make you send an
+	unintentional number of URLs (such as 499 or 501 URLs). So you could manually split each lines by 500, but a regex will do that for you:
 
 	Splitting the URL into groups of 500:
 		It is possible you may be wanting to save more than 500 and you have to split the URLs into groups of 500 for each email. Well, the regex to do that is this:
