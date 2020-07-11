@@ -98,6 +98,27 @@ Looking for URLs that vanished or newly created from a list.
 			^This will move the old to the left margin so that the sort line catches that and puts
 			 all of them together.
 	Then sort lines alphabetically.
+Dealing with huge number of URLs (more than 500).
+	If you want to perform saving URL without accidentally double-submitting (sending the same URL(s) twice)
+		1. Have a list of URLs, this time, "sorted" by each email you sent containing no more than 500 (call it "URL batch 500").
+		2. Email each group.
+		3. Every time you receive an email, copy that, paste into an empty document, then in "URL batch 500" look for a group that matches.
+		   Copy that group and paste it into the empty document.
+		4. Perform [Ridding out the URLs that were saved].
+		5. With the remaining URLs, send those, wait for another email and repeat.
+	Essentially, you are doing each email at a time for checking for failed to save links rather than wait till all the emails are sent. However,
+	having tons of URLs may be time consuming, and rushing could make you send a number of URLs that is unintended (such as 499 or 501 URLs). So
+	you could manuelly split each lines by 500, but a regex will do that for you:
+
+	Splitting the URL into groups of 500:
+		It is possible you may be wanting to save more than 500 and you have to split the URLs into groups of 500 for each email. Well, the regex to do that is this:
+			Search mode: Regular expression
+			Find what: [((^.*?$\R){500})]
+			Replace with: [\1\n]
+			Wrap around: checked
+			Search mode: Regular Expression
+		And you should get breakages at 501, 1002, 1503 and so on (a period of 501 lines; 501*G where G is an integer not negative).
+
 Credits:
 	Notepad++ community:
 		sasumner ( https://github.com/sasumner ) and xylographe ( https://github.com/xylographe )
