@@ -121,7 +121,13 @@ Dealing with huge number of URLs (more than 500).
 			Wrap around: checked
 			Search mode: Regular Expression
 		And you should get breakages at 501, 1002, 1503 and so on (a period of 501 lines; 501*G where G is an integer not negative).
-
+		EDIT: There is a bug found here: https://github.com/notepad-plus-plus/notepad-plus-plus/issues/8554 which causes it to DELETE some URLs
+		due to the last n URLs being less than 500 causes the replace to select the entire document. The current solution is to use this instead:
+			find what: [(?-s)(.*\R){500}\K]
+			replace with: [\n]
+			Wrap around: checked
+			Search mode: Regular expression
+			Click only in "Replace All"
 Credits:
 	Notepad++ community:
 		sasumner ( https://github.com/sasumner ) and xylographe ( https://github.com/xylographe )
