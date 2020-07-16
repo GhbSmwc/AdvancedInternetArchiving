@@ -128,6 +128,26 @@ Dealing with huge number of URLs (more than 500).
 			Wrap around: checked
 			Search mode: Regular expression
 			Click only in "Replace All"
+Using the IA's spread sheet-based saver.
+	Note: This tutorial assumes you have a google sheet document formatted in a list-bast format (each row contains 1 URL):
+			A	B	C	D
+		1	[URL1]	[empty]	[empty]	[empty]
+		2	[URL2]	[empty]	[empty]	[empty]
+		3	[URL3]	[empty]	[empty]	[empty]
+	So after you have your list of URLs, and that you went to here: https://archive.org/services/wayback-gsheets/ and selected
+	"Archive URLs" and it edits the spreadsheet showing the save results:
+			A	B	C	         D
+		1	[URL1]	[Y/N]	[HTTPStat]	 [IAURL1]
+		2	[URL1]	[Y/N]	[HTTPStat]	 [IAURL2]
+		3	[URL1]	[Y/N]	[HTTPStat]	 [IAURL3]
+	Drag column D and place it before B (you should have URL and IAURL next to one another), Copy columns A and the new B and paste it into notepad++, the table will get converted to text using tab-separated values. Then replace:
+		Find what: [^(?'URL'[^[:s:]]+)	https://web\.archive\.org/web/[0-9]*/\g'URL'$]
+		Replace with: []
+		Wrap around: checked
+		Search Mode: Regular expression
+		
+		Hit "Replace all"
+	You should now have URLs that either got redirected or didn't save at all.
 Credits:
 	Notepad++ community:
 		sasumner ( https://github.com/sasumner ) and xylographe ( https://github.com/xylographe )
