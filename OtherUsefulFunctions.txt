@@ -141,13 +141,19 @@ Using the IA's spread sheet-based saver.
 		2	[URL1]	[Y/N]	[HTTPStat]	 [IAURL2]
 		3	[URL1]	[Y/N]	[HTTPStat]	 [IAURL3]
 	Drag column D and place it before B (you should have URL and IAURL next to one another), Copy columns A and the new B and paste it into notepad++, the table will get converted to text using tab-separated values. Then replace:
-		Find what: [^(?'URL'[^[:s:]]+)	https://web\.archive\.org/web/[0-9]*/\g'URL'$]
+		Find what: [^(?'URL'[^[:s:]]+)\thttps://web\.archive\.org/web/[0-9]*/\g'URL'$]
 		Replace with: []
 		Wrap around: checked
 		Search Mode: Regular expression
 		
 		Hit "Replace all"
-	You should now have URLs that either got redirected or didn't save at all.
+	You should now have URLs that either got redirected or didn't save at all. Then get rid of the URLs of the IA version placed to the right of the URL you submit:
+		Find what: [\t.*?$]
+		Replace with: []
+		Wrap around: checked
+		Search Mode: Regular expression
+		
+		Hit "Replace all"
 Credits:
 	Notepad++ community:
 		sasumner ( https://github.com/sasumner ) and xylographe ( https://github.com/xylographe )
