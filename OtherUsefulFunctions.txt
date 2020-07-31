@@ -1,4 +1,5 @@
-These contains misc functions useful in somewhat rare cases.
+These contains misc functions useful in somewhat rare cases. Note that this entire tutorial assumes when you create a list of URLs, you have them formatted
+with one URL per line (other than the spreadsheet format that you pasted).
 
 Get human-readable timestamp from internet archive URL.
 When viewing an archived page, the IA stores the timestamp in this format:
@@ -76,7 +77,7 @@ Looking for URLs that vanished or newly created from a list.
 	To obtain only the new URLs, have two lists, one from an earlier date and the one most recent. I recommend naming these txt files as a date (YYYY-MM-DD
 	leading zeroes included if you are keeping records of old lists) and sort them by name for easy finding.
 	
-	On the older list, append " old" at the end of each URLs:
+	On the older list, append " old" at the end of each URLs (example: [https://www.example.com old]):
 		Find what: [$]
 		Replace with: [ old]
 		Wrap around: checked
@@ -97,7 +98,8 @@ Looking for URLs that vanished or newly created from a list.
 		Search mode: Regular expression
 			^This will move the old to the left margin so that the sort line catches that and puts
 			 all of them together.
-	Then sort lines alphabetically.
+	Then sort lines alphabetically. This will first move the word “old” to the left (since the sort lines function scans characters left to right),
+	and that will cause the sorter to recognize this and place anything starting with that word together with all other old links that died.
 Dealing with huge number of URLs (more than 500).
 	Perhaps, you want to re-attempt to save links that failed email-by-email based instead of waiting till all emails are "replied"
 	then saving a list of URLs that failed.
