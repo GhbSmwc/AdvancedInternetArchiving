@@ -131,7 +131,7 @@ Dealing with huge number of URLs (more than 500).
 			Search mode: Regular expression
 			Click only in "Replace All"
 Using the IA's spread sheet-based saver.
-	Note: This tutorial assumes you have a google sheet document formatted in a list-bast format (each row contains 1 URL):
+	Note: This tutorial assumes you have a google sheet document formatted in a list-based format (each row contains 1 URL):
 			A	B	C	D
 		1	[URL1]	[empty]	[empty]	[empty]
 		2	[URL2]	[empty]	[empty]	[empty]
@@ -142,6 +142,12 @@ Using the IA's spread sheet-based saver.
 		1	[URL1]	[Y/N]	[HTTPStat]	 [IAURL1]
 		2	[URL1]	[Y/N]	[HTTPStat]	 [IAURL2]
 		3	[URL1]	[Y/N]	[HTTPStat]	 [IAURL3]
+		
+		Notes:
+			IAURL is usually [https://web.archive.org/web/YYYYMMDDhhmmss/SiteURL] when saved successfully, possible errors
+			that the links may not be saved are these instead of the IA archived URL:
+				[This URL has been already captured 10 times today. Please email us at "info@archive.org" if you would like to discuss this more.]
+				[The server response status was 502.]
 	Drag column D and place it before B (you should have URL and IAURL next to one another), Copy columns A and the new B and paste it into notepad++, the table will get converted to text using tab-separated values. Then replace:
 		Find what: [^(?'URL'[^[:s:]]+)\thttps://web\.archive\.org/web/[0-9]*/\g'URL'$]
 		Replace with: []
@@ -149,7 +155,15 @@ Using the IA's spread sheet-based saver.
 		Search Mode: Regular expression
 		
 		Hit "Replace all"
-	You should now have URLs that either got redirected or didn't save at all. Then get rid of the URLs of the IA version placed to the right of the URL you submit:
+		
+		^Removes all lines that were saved successfully (A URL, and the IA version without any redirects).
+	Now we have only URLs that that errored. To remove URLs that “cannot save” (such as being saved 10 times in a row within a day), do this:
+		Find what: [^.+?(This URL has been already captured 10 times today).+?$] (note, there may be other errors I haven't discovered yet, if you find more, use “|<another message>” in the parenthesis)
+		Wrap around: checked
+		Search Mode: Regular expression
+		
+		Hit "Replace all"
+	Then to leave out only the URLs that should be reattempted, do this to remove all content after the URLs in each line:
 		Find what: [\t.*?$]
 		Replace with: []
 		Wrap around: checked
