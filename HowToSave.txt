@@ -79,6 +79,7 @@ Using internet archive's email (savepagenow@archive.org) page saver:
 			[https://pbs.twimg.com/hashflag/config-<year>-<month>-<day>-16.json]
 			[https://twitter.com/i/js_inst?c_name=ui_metrics]
 			[https://abs.twimg.com/responsive-web/web/i18n-rweb/en.2e279514.js]
+			[https://t.co/<Base64_string>]
 		
 		When a redirect happens, currently, the WBM will simply show the URL redirected to, not the link you gave it.
 		To retry these redirected links, follow these instructions:
