@@ -93,14 +93,15 @@ Only 1 item per line! No duplicates, nor empty lines!
 		//Handle display output
 			Output += "<h1>List of successful saved links (excluding redirects)</h1>"
 			var ListOfSuccessIndex = 0
+			Output += "<kbd>Number of success: " + IAURLSuccessListIndex.toString(10) +"</kbd>"
 			Output += "<table>"
 			while ((ListOfSuccessIndex < IAURLSuccessList.length)&&(IAURLSuccessList[ListOfSuccessIndex] != "")) {
 				Output += "<tr><td><kbd>" + IAURLSuccessList[ListOfSuccessIndex] + "</kbd></td></tr>"
 				ListOfSuccessIndex++
 			}
 			Output += "</table>"
-			Output += "<kbd>Number of success: " + ListOfSuccessIndex.toString(10) +"</kbd>"
 			Output += "<h1>List of failed links (include so called &ldquo;success&rdquo; on redirects)</h1>"
+			Output += "<kbd>Number of links you submit that may have been redirected or failed: " + IAURLFailedListIndex.toString(10) +"</kbd>"
 			Output += "<table>"
 			ListOfFailedIndex = 0
 			while ((ListOfFailedIndex < IAURLFailedList.length)&&(IAURLFailedList[ListOfFailedIndex] != "")) {
@@ -108,7 +109,6 @@ Only 1 item per line! No duplicates, nor empty lines!
 				ListOfFailedIndex++
 			}
 			Output += "</table>"
-			Output += "<kbd>Number of links you submit that may have been redirected or failed: " + ListOfFailedIndex.toString(10) +"</kbd>"
 		//Display output
 			document.getElementById("Output").innerHTML = Output
 	}
