@@ -1,0 +1,115 @@
+<html>
+	<head>
+		<style>
+			html {
+			background-color: white;
+			color: black;
+			font-family: sans-serif;
+			}
+			
+			table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			}
+			
+			span.NoLineBreak {
+				white-space: nowrap;
+			}
+		</style>
+	</head>
+<body>
+Only 1 item per line! No duplicates, nor empty lines!
+<table>
+	<tr>
+		<td>Enter the URLs you've submitted here:<br>
+		<textarea id="UserSubmittedURLsList" cols="50" rows="25" oninput="CompareURLIAURL()"></textarea></td>
+		<td>Enter the email you got from the WBM email saver here:<br>
+		<textarea id="IASentBackURLsList" cols="50" rows="25" oninput="CompareURLIAURL()"></textarea></td>
+	</tr>
+</table>
+<span id="Output"></span>
+
+<script>
+	function CompareURLIAURL() {
+		//Start from empty
+			var Output = ""
+		//Convert the texts into array
+			var UserSubmittedURLsList = document.getElementById("UserSubmittedURLsList").value
+			var UserSubmittedURLsArray = UserSubmittedURLsList.split('\n')
+			var IASentBackURLsList = document.getElementById("IASentBackURLsList").value
+			var IASentBackURLsArray = IASentBackURLsList.split('\n')
+		//Check for URL matches
+			var UserSubmittedURLsArrayIndex = 0
+			var IASentBackURLsArrayIndex = 0
+			var IAURLSuccessListIndex = 0
+			var IAURLFailedListIndex = 0
+			var UserURLsSavedStatus = new Array(UserSubmittedURLsArray.length).fill("")
+			var IAURLSuccessList = new Array(UserSubmittedURLsArray.length).fill("")
+			var IAURLFailedList = new Array(UserSubmittedURLsArray.length).fill("")
+			var IAURL_SiteURLPos = 0
+			var IAURL_SiteURLPart = ""
+			var URLMatch = false
+			var SaveSuccess = false
+			while (UserSubmittedURLsArrayIndex < UserSubmittedURLsArray.length) {
+				URLMatchFound = false
+				IASentBackURLsArrayIndex = 0
+				while ((IASentBackURLsArrayIndex < IASentBackURLsArray.length) && (URLMatchFound == false)) {
+					//Check if the IA have saved the URL (should be https://web.archive.org/web/YYYYMMDDhhmmss/https://www.example.com)
+					//Example: https://www.example.com is 23 characters.
+						if ((/^https:\/\/web.archive.org\/web\/\d+\/.*$/).test(IASentBackURLsArray[IASentBackURLsArrayIndex])) {
+							//Is it a saved URL? it has the IA part, but we need to see if the website part after the timestamp matches and not be a redirect
+								IAURL_SiteURLPos = (IASentBackURLsArray[IASentBackURLsArrayIndex]).search(/(?<=(^https:\/\/web.archive.org\/web\/\d+\/)).*$/)
+								IAURL_SiteURLPart = (IASentBackURLsArray[IASentBackURLsArrayIndex]).substring(IAURL_SiteURLPos)
+								if (UserSubmittedURLsArray[UserSubmittedURLsArrayIndex] == IAURL_SiteURLPart) {
+									URLMatchFound = true
+									SaveSuccess = true
+								} else {
+									IASentBackURLsArrayIndex++
+								}
+						} else if (UserSubmittedURLsArray[UserSubmittedURLsArrayIndex] == IASentBackURLsArray[IASentBackURLsArrayIndex].substring(0, (UserSubmittedURLsArray[UserSubmittedURLsArrayIndex].length))){
+							//Is it a failed URL? Does it start with the matching URL? The format is [https://www.example.com Error! <Error statement>]
+								URLMatchFound = true
+						} else {
+							//If no match is found, go to the next IA response
+								IASentBackURLsArrayIndex++
+						}
+				}
+				if (URLMatchFound == true) {
+					UserURLsSavedStatus[UserSubmittedURLsArrayIndex] = "MatchFound"
+					if (SaveSuccess == true) {
+						IAURLSuccessList[IAURLSuccessListIndex] = IASentBackURLsArray[IASentBackURLsArrayIndex]
+						IAURLSuccessListIndex++
+					} else {
+						IAURLFailedList[IAURLFailedListIndex] = IASentBackURLsArray[IASentBackURLsArrayIndex]
+						IAURLFailedListIndex++
+					}
+				} else {
+					UserURLsSavedStatus[UserSubmittedURLsArrayIndex] = "MatchNotFound"
+					IAURLFailedList[IAURLFailedListIndex] = UserSubmittedURLsArray[UserSubmittedURLsArrayIndex]
+					IAURLFailedListIndex++
+				}
+				UserSubmittedURLsArrayIndex++
+			}
+		//Handle display output
+			Output += "<h1>List of successful saved links (excluding redirects)</h1>"
+			var ListOfSuccessIndex = 0
+			Output += "<table>"
+			while ((ListOfSuccessIndex < IAURLSuccessList.length)&&(IAURLSuccessList[ListOfSuccessIndex] != "")) {
+				Output += "<tr><td><kbd>" + IAURLSuccessList[ListOfSuccessIndex] + "</kbd></td></tr>"
+				ListOfSuccessIndex++
+			}
+			Output += "</table>"
+			Output += "<kbd>Number of success: " + ListOfSuccessIndex.toString(10) +"</kbd>"
+			Output += "<h1>List of failed links (include so called &ldquo;success&rdquo; on redirects)</h1>"
+			Output += "<table>"
+			ListOfFailedIndex = 0
+			while ((ListOfFailedIndex < IAURLFailedList.length)&&(IAURLFailedList[ListOfFailedIndex] != "")) {
+				Output += "<tr><td><kbd>" + IAURLFailedList[ListOfFailedIndex] + "</kbd></td></tr>"
+				ListOfFailedIndex++
+			}
+			Output += "</table>"
+			Output += "<kbd>Number of links you submit that may have been redirected or failed: " + ListOfFailedIndex.toString(10) +"</kbd>"
+		//Display output
+			document.getElementById("Output").innerHTML = Output
+	}
+</script>
