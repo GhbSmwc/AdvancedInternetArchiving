@@ -50,13 +50,19 @@ Only 1 item per line! No duplicates, nor empty lines!
 			var IAURL_SiteURLPart = ""
 			var URLMatch = false
 			var SaveSuccess = false
+			var FirstArchivePos = 0
 			while (UserSubmittedURLsArrayIndex < UserSubmittedURLsArray.length) {
 				URLMatchFound = false
 				IASentBackURLsArrayIndex = 0
 				while ((IASentBackURLsArrayIndex < IASentBackURLsArray.length) && (URLMatchFound == false)) {
-					//Check if the IA have saved the URL (should be https://web.archive.org/web/YYYYMMDDhhmmss/https://www.example.com)
+					//Check if the IA have saved the URL (should be https://web.archive.org/web/YYYYMMDDhhmmss/https://www.example.com First Archive)
 					//Example: https://www.example.com is 23 characters.
 						if ((/^https:\/\/web.archive.org\/web\/\d+\/.*$/).test(IASentBackURLsArray[IASentBackURLsArrayIndex])) {
+							//Remove the "First Archive" at the end
+								if ((/^https:\/\/web.archive.org\/web\/\d+\/[^ ]*?\sFirst Archive/).test(IASentBackURLsArray[IASentBackURLsArrayIndex])) {
+									FirstArchivePos = IASentBackURLsArray[IASentBackURLsArrayIndex].search(/ First Archive$/)
+									IASentBackURLsArray[IASentBackURLsArrayIndex] = IASentBackURLsArray[IASentBackURLsArrayIndex].substring(0, FirstArchivePos)
+								}
 							//Is it a saved URL? it has the IA part, but we need to see if the website part after the timestamp matches and not be a redirect
 								IAURL_SiteURLPos = (IASentBackURLsArray[IASentBackURLsArrayIndex]).search(/(?<=(^https:\/\/web.archive.org\/web\/\d+\/)).*$/)
 								IAURL_SiteURLPart = (IASentBackURLsArray[IASentBackURLsArrayIndex]).substring(IAURL_SiteURLPos)
