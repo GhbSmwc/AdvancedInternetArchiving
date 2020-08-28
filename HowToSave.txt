@@ -1,5 +1,7 @@
 Because spaces may be included in the text, regular expressions shown here are to be used excluding the outermost brackets.
 
+Most of the instructions involve using Notepad++ to edit text documents (mainly, regular expressions).
+
 Using internet archive's email (savepagenow@archive.org) page saver:
 	Before we begin, the IA returns the email back to the user to indicate
 	if the links actually saved or not. It is formatted like this:

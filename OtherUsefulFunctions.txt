@@ -1,6 +1,8 @@
 These contains misc functions useful in somewhat rare cases. Note that this entire tutorial assumes when you create a list of URLs, you have them formatted
 with one URL per line (other than the spreadsheet format that you pasted).
 
+Again, documents here expect you to use notepad++.
+
 Get human-readable timestamp from internet archive URL.
 When viewing an archived page, the IA stores the timestamp in this format:
 	https://web.archive.org/web/YYYYMMDDhhmmss/<Website original URL>
