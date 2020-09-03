@@ -75,9 +75,10 @@ Using internet archive's email (savepagenow@archive.org) page saver:
 			If you use link Gopher, it will extract all CURRENTLY LOADED links in the HTML file. So by loading stuff (scrolling down) on the bottom,
 			they will be caught by the extension too.
 			
-		When saving tweets on twitter, it's possible that saving any twitter pages can randomly redirect to:
+		When saving tweets on twitter, it's possible that saving any twitter pages can randomly redirect to (but not limited to):
 			[https://api.twitter.com/1.1/jot/client_event.json]
 			[https://api.twitter.com/2/timeline/conversation/<TweetID>.json?<long string of commands>]
+			[https://api.twitter.com/graphql/<long list of commands>]
 			[https://pbs.twimg.com/hashflag/config-<year>-<month>-<day>-16.json]
 			[https://twitter.com/i/js_inst?c_name=ui_metrics]
 			[https://abs.twimg.com/responsive-web/web/i18n-rweb/en.2e279514.js]
