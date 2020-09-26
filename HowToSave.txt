@@ -79,6 +79,7 @@ Using internet archive's email (savepagenow@archive.org) page saver:
 			[https://api.twitter.com/1.1/jot/client_event.json]
 			[https://api.twitter.com/2/timeline/conversation/<TweetID>.json?<long string of commands>]
 			[https://api.twitter.com/graphql/<long list of commands>]
+			[https://abs.twimg.com/responsive-web/client-web/polyfills.<hex string>.js]
 			[https://pbs.twimg.com/hashflag/config-<year>-<month>-<day>-16.json]
 			[https://twitter.com/i/js_inst?c_name=ui_metrics]
 			[https://abs.twimg.com/responsive-web/web/i18n-rweb/en.2e279514.js]
