@@ -91,3 +91,79 @@
             <Action type="3" message="1701" wParam="0" lParam="1609" sParam="" />
             <Action type="2" message="0" wParam="42055" lParam="0" sParam="" />
         </Macro>
+        <Macro name="Convert URL % encode to uppercase" Ctrl="no" Alt="no" Shift="no" Key="0">
+            <Action type="3" message="1700" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1601" wParam="0" lParam="0" sParam="%([a-fA-F0-9][a-fA-F0-9])" />
+            <Action type="3" message="1625" wParam="0" lParam="2" sParam="" />
+            <Action type="3" message="1602" wParam="0" lParam="0" sParam="%\U\1\E" />
+            <Action type="3" message="1702" wParam="0" lParam="768" sParam="" />
+            <Action type="3" message="1701" wParam="0" lParam="1609" sParam="" />
+        </Macro>
+        <Macro name="Convert URL percent encode" Ctrl="yes" Alt="no" Shift="yes" Key="115">
+            <Action type="3" message="1700" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1601" wParam="0" lParam="0" sParam=" " />
+            <Action type="3" message="1625" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1602" wParam="0" lParam="0" sParam="%20" />
+            <Action type="3" message="1702" wParam="0" lParam="768" sParam="" />
+            <Action type="3" message="1701" wParam="0" lParam="1609" sParam="" />
+            <Action type="3" message="1700" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1601" wParam="0" lParam="0" sParam="!" />
+            <Action type="3" message="1625" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1602" wParam="0" lParam="0" sParam="%21" />
+            <Action type="3" message="1702" wParam="0" lParam="768" sParam="" />
+            <Action type="3" message="1701" wParam="0" lParam="1609" sParam="" />
+            <Action type="3" message="1700" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1601" wParam="0" lParam="0" sParam="#" />
+            <Action type="3" message="1625" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1602" wParam="0" lParam="0" sParam="%23" />
+            <Action type="3" message="1702" wParam="0" lParam="768" sParam="" />
+            <Action type="3" message="1701" wParam="0" lParam="1609" sParam="" />
+            <Action type="3" message="1700" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1601" wParam="0" lParam="0" sParam="$" />
+            <Action type="3" message="1625" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1602" wParam="0" lParam="0" sParam="%24" />
+            <Action type="3" message="1702" wParam="0" lParam="768" sParam="" />
+            <Action type="3" message="1701" wParam="0" lParam="1609" sParam="" />
+            <Action type="3" message="1700" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1601" wParam="0" lParam="0" sParam="&apos;" />
+            <Action type="3" message="1625" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1602" wParam="0" lParam="0" sParam="%27" />
+            <Action type="3" message="1702" wParam="0" lParam="768" sParam="" />
+            <Action type="3" message="1701" wParam="0" lParam="1609" sParam="" />
+            <Action type="3" message="1700" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1601" wParam="0" lParam="0" sParam="(" />
+            <Action type="3" message="1625" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1602" wParam="0" lParam="0" sParam="%28" />
+            <Action type="3" message="1702" wParam="0" lParam="768" sParam="" />
+            <Action type="3" message="1701" wParam="0" lParam="1609" sParam="" />
+            <Action type="3" message="1700" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1601" wParam="0" lParam="0" sParam=")" />
+            <Action type="3" message="1625" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1602" wParam="0" lParam="0" sParam="%29" />
+            <Action type="3" message="1702" wParam="0" lParam="768" sParam="" />
+            <Action type="3" message="1701" wParam="0" lParam="1609" sParam="" />
+            <Action type="3" message="1700" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1601" wParam="0" lParam="0" sParam="*" />
+            <Action type="3" message="1625" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1602" wParam="0" lParam="0" sParam="%2A" />
+            <Action type="3" message="1702" wParam="0" lParam="768" sParam="" />
+            <Action type="3" message="1701" wParam="0" lParam="1609" sParam="" />
+            <Action type="3" message="1700" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1601" wParam="0" lParam="0" sParam="+" />
+            <Action type="3" message="1625" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1602" wParam="0" lParam="0" sParam="%2B" />
+            <Action type="3" message="1702" wParam="0" lParam="768" sParam="" />
+            <Action type="3" message="1701" wParam="0" lParam="1609" sParam="" />
+            <Action type="3" message="1700" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1601" wParam="0" lParam="0" sParam="[" />
+            <Action type="3" message="1625" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1602" wParam="0" lParam="0" sParam="%5B" />
+            <Action type="3" message="1702" wParam="0" lParam="768" sParam="" />
+            <Action type="3" message="1701" wParam="0" lParam="1609" sParam="" />
+            <Action type="3" message="1700" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1601" wParam="0" lParam="0" sParam="]" />
+            <Action type="3" message="1625" wParam="0" lParam="0" sParam="" />
+            <Action type="3" message="1602" wParam="0" lParam="0" sParam="%5D" />
+            <Action type="3" message="1702" wParam="0" lParam="768" sParam="" />
+            <Action type="3" message="1701" wParam="0" lParam="1609" sParam="" />
+        </Macro>
