@@ -167,7 +167,7 @@
             <Action type="3" message="1702" wParam="0" lParam="768" sParam="" />
             <Action type="3" message="1701" wParam="0" lParam="1609" sParam="" />
         </Macro>
-        <Macro name="IAEmail Convert UserSent URLs to list" Ctrl="no" Alt="no" Shift="no" Key="0">
+        <Macro name="IAEmail Convert UserSent URLs to list" Ctrl="no" Alt="yes" Shift="yes" Key="87">
             <Action type="3" message="1700" wParam="0" lParam="0" sParam="" />
             <Action type="3" message="1601" wParam="0" lParam="0" sParam="$" />
             <Action type="3" message="1625" wParam="0" lParam="2" sParam="" />
@@ -175,7 +175,7 @@
             <Action type="3" message="1702" wParam="0" lParam="768" sParam="" />
             <Action type="3" message="1701" wParam="0" lParam="1609" sParam="" />
         </Macro>
-        <Macro name="IAEmail Reformat Received List" Ctrl="no" Alt="no" Shift="no" Key="0">
+        <Macro name="IAEmail Convert IAReceivedSuccess URLs List" Ctrl="no" Alt="yes" Shift="yes" Key="69">
             <Action type="3" message="1700" wParam="0" lParam="0" sParam="" />
             <Action type="3" message="1601" wParam="0" lParam="0" sParam="https://web\.archive\.org/web/\d*/(?&apos;OriginalURL&apos;[^\t\n\r ]*)( First Archive|$)" />
             <Action type="3" message="1625" wParam="0" lParam="2" sParam="" />
@@ -188,7 +188,7 @@
             <Action type="3" message="1702" wParam="0" lParam="0" sParam="" />
             <Action type="3" message="1701" wParam="0" lParam="1641" sParam="" />
         </Macro>
-        <Macro name="IAEmail Remove saved links" Ctrl="no" Alt="no" Shift="no" Key="0">
+        <Macro name="IAEmail Remove saved links" Ctrl="no" Alt="yes" Shift="yes" Key="82">
             <Action type="2" message="0" wParam="42059" lParam="0" sParam="" />
             <Action type="2" message="0" wParam="42077" lParam="0" sParam="" />
             <Action type="2" message="0" wParam="42056" lParam="0" sParam="" />

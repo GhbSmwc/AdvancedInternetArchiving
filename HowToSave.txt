@@ -148,4 +148,4 @@ Using internet archive's email (savepagenow@archive.org) page saver:
 		(7) To send the URLs to the WBM again, have a copy of the URLs you sent, but without the tab followed by [UserSent]:
 			Find what: [\t\[UserSent\]]
 			Replace with: []
-		(7) Resubmit and repeat the entire steps until all links are properly saved.
+		(8) Resubmit and repeat the entire steps until all links are properly saved.
